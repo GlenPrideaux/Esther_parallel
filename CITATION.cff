@@ -1,0 +1,41 @@
+cff-version: 1.2.0
+message: "If you use this project, please cite the Zenodo publication listed below."
+title: "Esther Parallel Edition: An English Alignment of the Hebrew and Greek Text Traditions"
+type: book
+authors:
+  - family-names: "Prideaux"
+    given-names: "Glen"
+    affiliation: "Independent Scholar"
+    country: "Australia"
+repository-code: "https://github.com/GlenPrideaux/Esther_parallel"
+url: "https://github.com/GlenPrideaux/Esther_parallel"
+license: "CC-BY-4.0"
+abstract: >
+  A verse-aligned English parallel edition of the Book of Esther in its
+  Masoretic, Septuagint and Alpha textual traditions, designed to make structural and
+  literary differences between the two major textual forms directly accessible
+  to readers without Hebrew or Greek.
+keywords:
+  - Septuagint
+  - Esther
+  - Masoretic Text
+  - Alpha Text
+  - Textual Criticism
+  - Hebrew Bible
+  - Biblical Studies
+  - Parallel Edition
+  - LXX
+doi: 
+version: "1.0"
+date-released: 2026-03-15
+
+preferred-citation:
+  type: book
+  authors:
+    - family-names: "Prideaux"
+      given-names: "Glen"
+  title: "Esther Parallel Edition: An English Alignment of the Hebrew and Greek Text Traditions"
+  publisher: "Zenodo"
+  year: 2026
+  doi: 
+  url: ""
