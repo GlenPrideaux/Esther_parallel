@@ -1,0 +1,140 @@
+\documentclass[10pt]{extbook}
+
+\usepackage[margin=18mm]{geometry}
+%\usepackage{multicol}
+\usepackage{microtype}
+%\usepackage{hyperref}
+\usepackage{needspace}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+
+\newif\ifbritish
+
+\renewcommand{\headrulewidth}{0.4pt}   % line under header (optional)
+
+\setlength{\columnsep}{10mm}
+\setlength{\parindent}{12pt}
+\setlength{\parskip}{1pt}
+% Width reserved for verse numbers (tune)
+
+\newlength{\verselabelwidth}
+\newlength{\verselabelgap}
+
+\pagestyle{fancy}
+
+\fancyhf{}                 % clear all header and footer fields
+\fancyhead[LE,RO]{\thepage}   % page numbers outer edge
+\fancyhead[LO]{\leftmark}     % left page, inner header
+\fancyhead[RE]{\rightmark}    % right page, inner header
+
+\fancyhead[LE]{Esther Alpha Text in English}
+\fancyhead[RO]{\rightmark}
+\fancyhead[LO,RE]{\thepage}
+
+
+% Measure width from the widest label you expect (Jeremiah: "52:34")
+\settowidth{\verselabelwidth}{\scriptsize 52:34}
+
+% Half-hanging label: half in margin, half in text
+\newcommand{\verselabel}[1]{%
+    {\textsuperscript{\scriptsize #1}}%
+}
+\newcommand{\emptyverselabel}[1]{%
+    \hspace*{-0.5\verselabelwidth}%
+    {\textsuperscript{\scriptsize\textcolor{gray}{#1}}}%
+}
+\newcommand{\smartverse}[2]{%
+\noindent
+\if\relax\detokenize{#2}\relax
+\emptyverselabel{#1}
+\else
+\verselabel{#1}
+\fi
+\,#2\par
+}
+
+\newcommand{\Verse}[6]{% fullRef, verse, suf, par?, text
+  \ifnum#4=1\relax
+    \if\relax\detokenize{#6}\relax
+      % #6 is empty
+      \par\verselabel{#1}{#5}%
+    \else
+      % #6 contains something
+      \par\verselabel{#1(#6)}{#5}%
+    \fi
+  \else
+    \ifnum#3=0\relax
+    \verselabel{#2}{#5}%
+    \else
+    #5%
+    \fi
+  \fi
+}
+
+\newcommand{\poemindent}[1]{\hspace*{#1em}}
+% Start a new line iff we're currently mid-paragraph,
+% then typeset one poetry line.
+\newcommand{\poemline}[2]{%
+  \ifhmode\unskip\par\fi%
+  \ifnum#1>1 \penalty5000 \fi
+  {\setlength{\parskip}{0pt}%
+   \setlength{\parindent}{0pt}%
+%   \fontsize{9pt}{10.2pt}\selectfont%
+   \noindent\poemindent{#1}#2\par}%
+}
+\newcommand{\ChapterHeading}[1]{%
+    \setcounter{footnote}{0}%
+  \Needspace{5\baselineskip}%
+  \addvspace{1.5em}
+  \begin{center}
+    \large\bfseries Chapter #1
+  \end{center}
+  \addvspace{0.75em}
+  \nobreak\nointerlineskip\penalty10000
+  \markboth{Chapter #1}{Chapter #1}
+}
+\newcommand{\ChapterParenHeading}[1]{%
+  \setcounter{footnote}{0}%
+  \noindent%
+  \hspace*{-1.5em}%
+    {\Large\textbf(#1)\ }
+}
+
+\newcommand{\DescriptiveHeading}[1]{%
+\raggedright\par\vspace{-0.3\baselineskip}{\large\textbf{#1}}\par\vspace{0.6\baselineskip}
+}
+\usepackage{fontspec}
+\usepackage{polyglossia}
+%\setmainfont{Libertinus Serif}
+\setmainfont{TeX Gyre Pagella}[
+  SmallCapsFeatures = {Scale=1.10}
+]
+\setmainlanguage{english}
+\setotherlanguage{hebrew}
+\setotherlanguage{greek}
+\newfontfamily\hebrewfont[
+  BoldFont       = {Ezra SIL},
+  ItalicFont     = {Ezra SIL},
+  BoldItalicFont = {Ezra SIL}
+]{Ezra SIL}
+\newfontfamily\greekfont[
+  BoldFont       = {SBL Greek},
+  ItalicFont     = {SBL Greek},
+  BoldItalicFont = {SBL Greek}
+]{SBL Greek}
+\tolerance=1000
+\emergencystretch=2em
+\hbadness=5000
+
+\widowpenalty=6000
+\clubpenalty=3000
+
+\counterwithin{footnote}{section}
+\renewcommand{\thefootnote}{\alph{footnote}}
+
+
+\newcommand{\concitem}[2]{%
+  \hangindent=2em
+  \hangafter=1
+  \textbf{#1} #2\par
+}
